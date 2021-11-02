@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--<ProjectGuid>{3A6B828C-0E7D-4816-9696-6F40704386C7}</ProjectGuid> -->
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!-- Start PropertyGroup -->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Development</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3A6B828C-0E7D-4816-9696-6F40704386C7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BuildTool</RootNamespace>
+    <AssemblyName>BuildTool</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Binaries\ExternalTools\BuildTool\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;VCPROJECT;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|AnyCPU'">
+    <OutputPath>..\..\..\Binaries\ExternalTools\BuildTool\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>..\..\..\Binaries\ExternalTools\BuildTool\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <!-- End PropertyGroup -->
+  <ItemGroup>
+    <Reference Include="BuildToolUtilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Binaries\ExternalTools\BuildToolUtilities\BuildToolUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Setup.Configuration.Interop">
+      <HintPath>..\..\..\Binaries\ExternalDependencies\Microsoft\VisualStudio\Microsoft.VisualStudio.Setup.Configuration.Interop.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <!--<Reference Include="System.IO.Compression.FileSystem" />-->
+    <!--<Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference> -->
+    <Reference Include="System.IO.Log" />
+    <!--<Reference Include="System.Management" />-->
+    <!--<Reference Include="System.Web.Extensions" />-->
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Zip, Identity=Zip">
+      <HintPath>..\Zip.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Compile -->
+    <Compile Include="..\MetaData.cs">
+      <Link>Properties\MetaData.cs </Link>
+    </Compile>
+    <Compile Include="BuildTool.cs" />
+    <Compile Include="Configurations\Descriptors\CustomBuildSteps.cs" />
+    <Compile Include="Configurations\Descriptors\LocalizationDescriptor.cs" />
+    <Compile Include="Configurations\Descriptors\ModuleDescriptor.cs" />
+    <Compile Include="Configurations\Descriptors\ModuleManifest.cs" />
+    <Compile Include="Configurations\Descriptors\PluginDescriptor.cs" />
+    <Compile Include="Configurations\Descriptors\PluginReferenceDescriptor.cs" />
+    <Compile Include="Configurations\Descriptors\UProjectDescriptor.cs" />
+    <Compile Include="Configurations\Rules\ModuleRulesContext.cs" />
+    <Compile Include="Configurations\Rules\ModuleRules.cs" />
+    <Compile Include="Configurations\Rules\XXXTargetRules.cs" />
+    <Compile Include="Configurations\Rules\TargetRules.cs" />
+    <Compile Include="Configurations\Rules\TargetInfo.cs" />
+    <Compile Include="Configurations\InstalledPlatformInfo.cs" />
+    <Compile Include="Configurations\RuntimeDependency.cs" />
+    <Compile Include="Configurations\TargetPlatform.cs" />
+    <Compile Include="Configurations\TargetReceipt.cs" />
+    <Compile Include="System\Action\Action.cs" />
+    <Compile Include="System\Action\ActionExecutor.cs" />
+    <Compile Include="System\Action\ActionGraph.cs" />
+    <Compile Include="System\Action\ActionGraphBuilder.cs" />
+    <Compile Include="System\Action\ActionHistory.cs" />
+    <Compile Include="System\Build\BuildBinary.cs" />
+    <Compile Include="System\Build\BuildBundleResource.cs" />
+    <Compile Include="System\Build\BuildDeploy.cs" />
+    <Compile Include="System\Build\BuildFramework.cs" />
+    <Compile Include="System\Build\BuildModule.cs" />
+    <Compile Include="System\Build\BuildModuleCPP.cs" />
+    <Compile Include="System\Build\BuildModuleExternal.cs" />
+    <Compile Include="System\Build\BuildPlatform.cs" />
+    <Compile Include="System\Build\BuildPlatformFactory.cs" />
+    <Compile Include="System\Build\BuildPlatformSDK.cs" />
+    <Compile Include="System\Build\BuildPlugin.cs" />
+    <Compile Include="System\Build\BuildTarget.cs" />
+    <Compile Include="System\Build\BuildTargetDescriptor.cs" />
+    <Compile Include="System\BuildConfiguration.cs" />
+    <Compile Include="System\BuildETC\BuildHostPlatform.cs" />
+    <Compile Include="System\BuildETC\BuildVersion.cs" />
+    <Compile Include="System\Config\ConfigCache.cs" />
+    <Compile Include="System\Config\ConfigFile.cs" />
+    <Compile Include="System\Config\ConfigFileAttribute.cs" />
+    <Compile Include="System\Config\ConfigHierarchy.cs" />
+    <Compile Include="System\Config\ConfigValueTracker.cs" />
+    <Compile Include="System\Cpp\CppCompileEnvironment.cs" />
+    <Compile Include="System\Cpp\CppDependencyCache.cs" />
+    <Compile Include="System\Cpp\CppIncludeParser.cs" />
+    <Compile Include="System\Executors\Distcc.cs" />
+    <Compile Include="System\Executors\HybridExecutor.cs" />
+    <Compile Include="System\Executors\LocalExecutor.cs" />
+    <Compile Include="System\Executors\ParallelExecutor.cs" />
+    <Compile Include="System\Executors\SNDBS.cs" />
+    <Compile Include="System\Executors\XGE.cs" />
+    <Compile Include="System\HeaderToolExecution.cs" />
+    <Compile Include="System\Plugin\PluginInfo.cs" />
+    <Compile Include="System\Plugin\Plugins.cs" />
+    <Compile Include="System\PCH\PCHInstance.cs" />
+    <Compile Include="System\PCH\PCHTemplate.cs" />
+    <Compile Include="System\PCH\PrecompiledManifest.cs" />
+    <Compile Include="System\Rules\RulesAssembly.cs" />
+    <Compile Include="System\Rules\RulesCompiler.cs" />
+    <Compile Include="System\Rules\RulesDocumentation.cs" />
+    <Compile Include="System\Rules\RulesScope.cs" />
+    <Compile Include="System\ToolMode\BuildMode\ToolChain\XXXToolChain.cs" />
+    <Compile Include="System\ToolMode\BuildMode\BuildMode.cs" />
+    <Compile Include="System\ToolMode\BuildMode\HotReload.cs" />
+    <Compile Include="System\ToolMode\BuildMode\LinkEnvironment.cs" />
+    <Compile Include="System\ToolMode\BuildMode\TargetMakeFile.cs" />
+    <Compile Include="System\ToolMode\BuildMode\UnityCPP.cs" />
+    <Compile Include="System\ToolMode\BuildMode\ToolChain\ISPCToolChain.cs" />
+    <Compile Include="System\ToolMode\BuildMode\ToolChain\RemoteMac.cs" />
+    <Compile Include="System\ToolMode\BuildMode\ToolChain\ToolChain.cs" />
+    <Compile Include="System\ToolMode\GenerateProjectFilesMode\GenerateProjectFilesMode.cs" />
+    <Compile Include="System\ToolMode\GenerateProjectFilesMode\ProjectFiles\PlatformProjectGenerator.cs" />
+    <Compile Include="System\ToolMode\GenerateProjectFilesMode\ProjectFiles\PlatformProjectGeneratorCollection.cs" />
+    <Compile Include="System\ToolMode\GenerateProjectFilesMode\ProjectFiles\Project.cs" />
+    <Compile Include="System\ToolMode\GenerateProjectFilesMode\ProjectFiles\ProjectFileGenerator.cs" />
+    <Compile Include="System\ToolMode\GenerateProjectFilesMode\ProjectFiles\CMAKE\CMakeFileGenerator.cs" />
+    <Compile Include="System\ToolMode\GenerateProjectFilesMode\ProjectFiles\Make\MakeFileGenerator.cs" />
+    <Compile Include="System\ToolMode\GenerateProjectFilesMode\ProjectFiles\VSCode\VSCodeProjectFileGenerator.cs" />
+    <Compile Include="System\ToolMode\ToolMode.cs" />
+    <Compile Include="System\ToolMode\WriteFileMode\WriteDocumentationMode.cs" />
+    <Compile Include="System\ToolMode\WriteFileMode\WriteMetadataMode.cs" />
+    <Compile Include="System\Utils\DataDrivenPlatformInfo.cs" />
+    <Compile Include="System\Utils\EncryptionAndSigning.cs" />
+    <Compile Include="System\Utils\FileMetadataPrefetch.cs" />
+    <Compile Include="System\Utils\NativeProjects.cs" />
+    <Compile Include="System\Utils\RestrictedFolders.cs" />
+    <Compile Include="System\Utils\SourceFileMetadataCache.cs" />
+    <Compile Include="System\Utils\SupportedConfigurationsAttribute.cs" />
+    <Compile Include="System\Utils\SupportedPlatformsAttribute.cs" />
+    <Compile Include="System\Utils\Utils.cs" />
+    <Compile Include="System\XML\XMLConfig.cs" />
+    <Compile Include="System\XML\XMLConfigFile.cs" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="Exists('System\Executors\FASTBuild.cs')">
+      <ItemGroup>
+        <Compile Include="System\Executors\FASTBuild.cs" />
+      </ItemGroup>
+      <PropertyGroup>
+        <DefineConstants>$(DefineConstants)FASTBUILD;</DefineConstants>
+      </PropertyGroup>
+    </When>
+  </Choose>
+  <!-- 플랫폼 먼저 Choose 하고, 그 안에 Project있으면 그 떄 Compile Include 할 수 있게.-->
+  <Choose>
+    <When Condition="Exists('System\Platforms\Windows\UEBuildWindows.cs')">
+      <ItemGroup>
+        <Compile Include="System\Platforms\Windows\*.cs" />
+      </ItemGroup>
+      <PropertyGroup>
+        <DefineConstants>$(DefineConstants)WINDOWS;</DefineConstants>
+      </PropertyGroup>
+      <Choose>
+        <When Condition="Exists('System\ToolMode\GenerateProjectFilesMode\ProjectFiles\VisualStudio\VCProject.cs')">
+          <ItemGroup>
+            <Compile Include="System\ToolMode\GenerateProjectFilesMode\ProjectFiles\VisualStudio\VCProject.cs" />
+            <Compile Include="System\ToolMode\GenerateProjectFilesMode\ProjectFiles\VisualStudio\VCProjectFileGenerator.cs" />
+            <Compile Include="System\ToolMode\GenerateProjectFilesMode\ProjectFiles\VisualStudio\VCSolutionOptions.cs" />
+            <Compile Include="System\ToolMode\GenerateProjectFilesMode\ProjectFiles\VisualStudio\VisualStudioMac\*.cs" />
+          </ItemGroup>
+          <PropertyGroup>
+            <DefineConstants>$(DefineConstants)VCPROJECT;</DefineConstants>
+          </PropertyGroup>
+        </When>
+      </Choose>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="Exists('System\Platforms\Linux\UEBuildLinux.cs')">
+      <ItemGroup>
+        <Compile Include="System\Platforms\Linux\*.cs" />
+      </ItemGroup>
+      <PropertyGroup>
+        <DefineConstants>$(DefineConstants)LINUX;</DefineConstants>
+      </PropertyGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="Exists('System\Platforms\HoloLens\UEBuildHoloLens.cs')">
+      <ItemGroup>
+        <Compile Include="System\Platforms\HoloLens\*.cs" />
+      </ItemGroup>
+      <PropertyGroup>
+        <DefineConstants>$(DefineConstants)HOLOLENS;</DefineConstants>
+      </PropertyGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="Exists('System\Platforms\Mac\UEBuildMac.cs')">
+      <ItemGroup>
+        <Compile Include="System\Platforms\Mac\*.cs" />
+        <Compile Include="System\ToolMode\BuildMode\ToolChain\AppleToolChain.cs" />
+      </ItemGroup>
+      <PropertyGroup>
+        <DefineConstants>$(DefineConstants)MAC;</DefineConstants>
+      </PropertyGroup>
+    </When>
+  </Choose>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

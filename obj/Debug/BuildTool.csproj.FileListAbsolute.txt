@@ -1,0 +1,9 @@
+D:\Visual_Studios_Repository\D3D12_Engine\Engine\SourceCode\ExternalTools\BuildTool\obj\Debug\BuildTool.csproj.AssemblyReference.cache
+D:\Visual_Studios_Repository\D3D12_Engine\Engine\SourceCode\ExternalTools\BuildTool\obj\Debug\BuildTool.exe.config
+D:\Visual_Studios_Repository\D3D12_Engine\Engine\SourceCode\ExternalTools\BuildTool\obj\Debug\BuildTool.csproj.CoreCompileInputs.cache
+D:\Visual_Studios_Repository\D3D12_Engine\Engine\Binaries\ExternalTools\BuildTool\BuildTool.exe.config
+D:\Visual_Studios_Repository\D3D12_Engine\Engine\Binaries\ExternalTools\BuildTool\BuildTool.exe
+D:\Visual_Studios_Repository\D3D12_Engine\Engine\Binaries\ExternalTools\BuildTool\BuildTool.pdb
+D:\Visual_Studios_Repository\D3D12_Engine\Engine\SourceCode\ExternalTools\BuildTool\obj\Debug\BuildTool.csproj.CopyComplete
+D:\Visual_Studios_Repository\D3D12_Engine\Engine\SourceCode\ExternalTools\BuildTool\obj\Debug\BuildTool.exe
+D:\Visual_Studios_Repository\D3D12_Engine\Engine\SourceCode\ExternalTools\BuildTool\obj\Debug\BuildTool.pdb
